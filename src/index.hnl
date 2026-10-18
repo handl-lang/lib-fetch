@@ -1,0 +1,25 @@
+--- fetch -- HTTP client contract (WinterCG `fetch` surface).
+---
+--- `fetch(input, init)` resolves to a Response record; backends
+--- (`fetch-c` over libcurl, `fetch-js` over the generated WebIDL
+--- bindings) export a `fetch` arrow of this signature, and may also
+--- expose the step-arrow form `fetch_task` for `concurrent` schedulers.
+---
+--- Request: `input` is the URL string; `init` fields are all optional:
+---   method      "GET" default
+---   headers     { name: value } record
+---   body        String
+---   body_bytes  Bytes
+---   timeout_ms  Int
+---   follow      Bool
+---   user_agent  String
+---   insecure    Bool (self-signed test servers only)
+---
+--- Response: `{ status: Int, headers: {..}, body: String,
+---   body_bytes: Bytes }`; transport failure raises `err`.
+---
+--- `~[1]~>` marks the call effectful: every backend reaches a foreign
+--- transport through `ffi.call` / `js.call`.
+
+export Fetch     := (String, Init) ~[1]~> Response
+export FetchTask := (String, Init) ~[1]~> Task
