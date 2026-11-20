@@ -1,3 +1,10 @@
 -- lib-fetch: modules this package provides (entry defaults to
 -- src/index.hnl; N modules resolve to src/<name>/index.hnl).
-{ modules: ["fetch"] }
+{
+  modules: ["fetch"],
+  name: "fetch",
+  description: "fetch port contract — WinterCG-style request/response surface.",
+  license: "MIT",
+  keywords: ["fetch", "http", "contract", "stdlib"],
+  homepage: "https://github.com/handl-lang/lib-fetch",
+}
