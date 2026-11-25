@@ -21,5 +21,5 @@
 --- `~[1]~>` marks the call effectful: every backend reaches a foreign
 --- transport through `ffi.call` / `js.call`.
 
-export Fetch     := (String, Init) ~[1]~> Response
-export FetchTask := (String, Init) ~[1]~> Task
+export Fetch     := (String, Init) ~>[1] Response
+export FetchTask := (String, Init) ~>[1] Task
